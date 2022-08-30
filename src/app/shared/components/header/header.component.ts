@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
   }
 
   public home(): void{
-    this.router.navigate(['/'])
+    console.log();
+
+    this.router.navigate(['keychain'])
   }
 
 }

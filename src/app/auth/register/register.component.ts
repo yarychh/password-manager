@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
   }
 
   get passwordMatchError(): boolean {
-    return this.registerForm.getError('mismatch') && this.registerForm.get('confirmPassword')?.touched;
+    return !!(this.registerForm.errors?.['mismatch']);
   }
 
   ngOnInit(): void {
   }
 
-  register(event: any): void{
+  register(event: SubmitEvent): void{
     console.log(event)
   }
 

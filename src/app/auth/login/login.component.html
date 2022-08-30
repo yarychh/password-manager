@@ -7,7 +7,7 @@
 
     <mat-form-field class="col-10" appearance="fill">
       <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName="email" placeholder="Enter Email">
+      <input type="email" matInput formControlName="email" placeholder="Enter Email" autocomplete="email">
       <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')">
         Please enter a valid email address
       </mat-error>
@@ -18,7 +18,7 @@
 
     <mat-form-field class="col-10" appearance="fill">
       <mat-label>Password</mat-label>
-      <input type="password" matInput formControlName="password" placeholder="Enter Password">
+      <input type="password" matInput formControlName="password" placeholder="Enter Password" autocomplete="current-password">
       <mat-error
         *ngIf="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')">
         Password should have at least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1
