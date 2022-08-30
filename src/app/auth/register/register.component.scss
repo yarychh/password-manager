@@ -1,0 +1,18 @@
+@import "/src/styles.scss";
+
+:host{
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr max-content 1fr;
+}
+
+.card{
+  margin: 0 auto;
+  padding: 1.5rem;
+  // max-width: 75vw;
+  // transform: translateY(-30px) !important;
+  grid-row: 2/2;
+  // background-color: $main-bg;
+}
