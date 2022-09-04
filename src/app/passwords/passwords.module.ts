@@ -4,8 +4,8 @@ import { KeychainComponent } from './keychain/keychain.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
-import { EditPairComponent } from './edit-pair/edit-pair.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditPairComponent } from './edit-pair/edit-pair.component';
 
 const routes: Routes = [
   {
@@ -15,16 +15,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    KeychainComponent,
-    EditPairComponent
-  ],
+  declarations: [KeychainComponent, EditPairComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
     MatDialogModule,
-  ]
+  ],
 })
-export class PasswordsModule { }
+export class PasswordsModule {}

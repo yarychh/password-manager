@@ -14,7 +14,11 @@ export class KeychainComponent implements OnInit {
   public addForm!: FormGroup;
   public pairs$!: Observable<IPassPair[]>;
 
-  constructor(private state: StateService, private fb: FormBuilder, private dialog: MatDialog) {
+  constructor(
+    private state: StateService,
+    private fb: FormBuilder,
+    private dialog: MatDialog
+  ) {
     this.addForm = this.fb.group({
       source: [null, Validators.required],
       login: [null, Validators.required],
@@ -46,8 +50,8 @@ export class KeychainComponent implements OnInit {
   public edit(pair: IPassPair): void {
     this.dialog.open(EditPairComponent, {
       width: '500px',
-      data: pair
-    })
+      data: pair,
+    });
   }
 
   public remove(id: number): void {

@@ -68,11 +68,9 @@ export class StateService {
 
       const users = this.getUsers();
       if (users?.length) {
-        const newUsers = JSON.parse(users).filter(
-          (user: IUser) => {
-            return user.id !== parsed.id
-          }
-        );
+        const newUsers = JSON.parse(users).filter((user: IUser) => {
+          return user.id !== parsed.id;
+        });
         localStorage.setItem('users', JSON.stringify([...newUsers, parsed]));
       }
 
@@ -82,24 +80,22 @@ export class StateService {
     }
   }
 
-  public removePair(id: number): void{
+  public removePair(id: number): void {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser?.length) {
       const parsed: IUser = JSON.parse(currentUser);
       const users = this.getUsers();
 
-      parsed.pairs = parsed.pairs.filter(pair => {
+      parsed.pairs = parsed.pairs.filter((pair) => {
         console.log(pair.id, 'pair.id');
         console.log(id, 'id');
         return pair.id !== id;
-      })
+      });
 
       if (users?.length) {
-        const newUsers = JSON.parse(users).filter(
-          (user: IUser) => {
-            return user.id !== parsed.id
-          }
-        );
+        const newUsers = JSON.parse(users).filter((user: IUser) => {
+          return user.id !== parsed.id;
+        });
         localStorage.setItem('users', JSON.stringify([...newUsers, parsed]));
       }
 
@@ -109,13 +105,13 @@ export class StateService {
     }
   }
 
-  public toggleShowPair(id: number): void{
+  public toggleShowPair(id: number): void {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser?.length) {
       const parsed: IUser = JSON.parse(currentUser);
       const users = this.getUsers();
 
-      parsed.pairs = parsed.pairs.map(pair => {
+      parsed.pairs = parsed.pairs.map((pair) => {
         if (pair.id === id) {
           pair.shown = !pair.shown;
         }
@@ -123,11 +119,9 @@ export class StateService {
       });
 
       if (users?.length) {
-        const newUsers = JSON.parse(users).filter(
-          (user: IUser) => {
-            return user.id !== parsed.id
-          }
-        );
+        const newUsers = JSON.parse(users).filter((user: IUser) => {
+          return user.id !== parsed.id;
+        });
         localStorage.setItem('users', JSON.stringify([...newUsers, parsed]));
       }
 
@@ -137,13 +131,13 @@ export class StateService {
     }
   }
 
-  public editPair(login: string, password: string, id: number): void{
+  public editPair(login: string, password: string, id: number): void {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser?.length) {
       const parsed: IUser = JSON.parse(currentUser);
       const users = this.getUsers();
 
-      parsed.pairs = parsed.pairs.map(pair => {
+      parsed.pairs = parsed.pairs.map((pair) => {
         if (pair.id === id) {
           pair.login = login;
           pair.password = password;
@@ -152,11 +146,9 @@ export class StateService {
       });
 
       if (users?.length) {
-        const newUsers = JSON.parse(users).filter(
-          (user: IUser) => {
-            return user.id !== parsed.id
-          }
-        );
+        const newUsers = JSON.parse(users).filter((user: IUser) => {
+          return user.id !== parsed.id;
+        });
         localStorage.setItem('users', JSON.stringify([...newUsers, parsed]));
       }
 

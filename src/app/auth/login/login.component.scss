@@ -1,6 +1,6 @@
 @import "/src/styles.scss";
 
-:host{
+:host {
   width: 100%;
   height: calc(100vh - 100px);
   display: grid;
@@ -8,7 +8,7 @@
   grid-template-rows: 1fr max-content 1fr;
 }
 
-.card{
+.card {
   margin: 0 auto;
   padding: 1.5rem;
   max-width: 75%;
@@ -17,10 +17,10 @@
   // background-color: $main-bg;
 }
 
-.login{
-  padding: .5rem 2rem;
+.login {
+  padding: 0.5rem 2rem;
 }
 
-.title{
+.title {
   font-weight: 400;
 }

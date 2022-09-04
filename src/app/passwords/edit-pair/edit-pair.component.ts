@@ -7,13 +7,17 @@ import { IPassPair, StateService } from 'src/app/shared/services/state.service';
 @Component({
   selector: 'app-edit-pair',
   templateUrl: './edit-pair.component.html',
-  styleUrls: ['./edit-pair.component.scss']
+  styleUrls: ['./edit-pair.component.scss'],
 })
 export class EditPairComponent implements OnInit {
-
   public editForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: IPassPair, private state: StateService, private ref: DialogRef) {
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: IPassPair,
+    private state: StateService,
+    private ref: DialogRef
+  ) {
     this.editForm = this.fb.group({
       login: [null, Validators.required],
       password: [null, Validators.required],
@@ -23,13 +27,16 @@ export class EditPairComponent implements OnInit {
   ngOnInit(): void {
     this.editForm.patchValue({
       login: this.data.login,
-      password: this.data.password
+      password: this.data.password,
     });
   }
 
-  public save(): void{
-    this.state.editPair(this.editForm.value.login, this.editForm.value.password, this.data.id);
+  public save(): void {
+    this.state.editPair(
+      this.editForm.value.login,
+      this.editForm.value.password,
+      this.data.id
+    );
     this.ref.close();
   }
-
 }

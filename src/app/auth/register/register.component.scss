@@ -1,6 +1,6 @@
 @import "/src/styles.scss";
 
-:host{
+:host {
   width: 100%;
   height: calc(100vh - 100px);
   display: grid;
@@ -8,17 +8,17 @@
   grid-template-rows: 1fr max-content 1fr;
 }
 
-.card{
+.card {
   margin: 0 auto;
   padding: 1.5rem;
   grid-row: 2/2;
 }
 
-.passError{
+.passError {
   font-weight: 400;
   color: red;
 }
 
-.register{
-  padding: .5rem 2rem;
+.register {
+  padding: 0.5rem 2rem;
 }

@@ -5,17 +5,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  constructor(public auth: AuthService, private router: Router) {}
 
-  constructor(public auth: AuthService, private router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  public home(): void {
+    this.router.navigate(['keychain']);
   }
-
-  public home(): void{
-    this.router.navigate(['keychain'])
-  }
-
 }

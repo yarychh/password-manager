@@ -6,7 +6,11 @@ export class CustomValidators {
       const sourceCtrl = control.get(source);
       const targetCtrl = control.get(target);
 
-      if (sourceCtrl?.value !== targetCtrl?.value && (sourceCtrl?.dirty && targetCtrl?.dirty)) {
+      if (
+        sourceCtrl?.value !== targetCtrl?.value &&
+        sourceCtrl?.dirty &&
+        targetCtrl?.dirty
+      ) {
         return { mismatch: true };
       }
 
