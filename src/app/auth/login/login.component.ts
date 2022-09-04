@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IUser } from 'src/app/shared/services/state.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -19,12 +20,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser?.length) {
+      const parsed: IUser = JSON.parse(currentUser);
+      this.auth.login(parsed.email, parsed.password)
+    }
   }
 
-  public login(event: SubmitEvent): void{
-    console.log(event);
-
-    this.auth.login();
+  public login(): void{
+    this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
   }
 
 }

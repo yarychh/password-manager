@@ -2,7 +2,7 @@
   <h1 class="text-center title pb-1">Welcome to KeyChain!</h1>
   <p class="text-center pb-3">Please login to continue</p>
 
-  <form [formGroup]="loginForm" (submit)="login($event)"
+  <form [formGroup]="loginForm" (submit)="login()"
     class="d-flex flex-column justify-content-center align-items-center">
 
     <mat-form-field class="col-10" appearance="fill">
@@ -16,7 +16,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="col-10" appearance="fill">
+    <mat-form-field class="col-10" [class.pb-3]="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')" appearance="fill">
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="password" placeholder="Enter Password" autocomplete="current-password">
       <mat-error
@@ -31,6 +31,6 @@
 
     <a routerLink="/auth/register" class="link text-center text-decoration-none text-muted pb-3">Don't have account?</a>
 
-    <button [disabled]="loginForm.invalid" type="submit" class="btn login">login</button>
+    <button [disabled]="loginForm.invalid" type="submit" class="btn login" [class.btn-info]="loginForm.valid">login</button>
   </form>
 </div>

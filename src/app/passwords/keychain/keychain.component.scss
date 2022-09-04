@@ -1,0 +1,63 @@
+@import "/src/styles.scss";
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 0.5rem;
+}
+
+.add {
+  padding: 0.5rem 2rem;
+}
+
+.source {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: $main-accent;
+  margin-bottom: 1.5rem;
+}
+
+.cred {
+  font-weight: 400;
+  font-size: 1rem;
+  color: $main-accent;
+  border: 1px solid $main-accent;
+  padding: 0.3rem;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  color: $main-accent;
+}
+
+.list {
+  list-style: none;
+  padding-left: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-item {
+  padding: 0.75rem;
+  background-color: $main-bg !important;
+  width: 300px;
+  position: relative;
+  &:hover {
+    background-color: $main-bg !important;
+  }
+}
+
+.action-box {
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  display: flex;
+}
+
+.action {
+  color: $main-accent;
+  margin-right: .5rem;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+<form [formGroup]="editForm" (submit)="save()" class="d-flex align-items-center flex-column p-2">
+  <div class="inputs mb-2">
+    <label for="source">Email, username or other credential</label>
+    <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="enter credential">
+    <label for="password">Password or passphrase</label>
+    <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="enter password">
+  </div>
+
+  <button [disabled]="editForm.invalid" type="submit" class="btn edit" [class.btn-success]="editForm.valid">Save</button>
+</form>

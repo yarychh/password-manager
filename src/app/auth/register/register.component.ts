@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IUser, StateService } from 'src/app/shared/services/state.service';
 import { CustomValidators } from 'src/app/shared/validators/custom.validators';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   public registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private state: StateService, private auth: AuthService) {
     this.registerForm = this.fb.group({
       firstName: [null, [Validators.required, Validators.minLength(3)]],
       lastName: [null, [Validators.required, Validators.minLength(3)]],
@@ -26,11 +28,18 @@ export class RegisterComponent implements OnInit {
     return !!(this.registerForm.errors?.['mismatch']);
   }
 
-  ngOnInit(): void {
-  }
-
-  register(event: SubmitEvent): void{
-    console.log(event)
+  register(): void{
+    const { firstName, lastName, email, password } = this.registerForm.value;
+    const newUser: IUser = {
+      email,
+      firstName,
+      lastName,
+      password,
+      id: Date.now(),
+      pairs: []
+    }
+    this.state.addUser(newUser);
+    this.auth.login(email, password);
   }
 
 }

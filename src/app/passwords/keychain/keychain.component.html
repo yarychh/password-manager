@@ -1,1 +1,36 @@
-<p>keychain works!</p>
+<div class="card" (submit)="addPair()">
+  <form [formGroup]="addForm" class="d-flex align-items-center p-2 flex-column flex-sm-row">
+    <div class="inputs">
+      <label for="source">Source</label>
+      <input type="text" name="source" formControlName="source" class="mb-2 p-1" placeholder="enter sorce for credentials ex. github">
+      <label for="source">Email, username or other credential</label>
+      <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="enter credential">
+      <label for="password">Password or passphrase</label>
+      <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="enter password">
+    </div>
+
+    <button [disabled]="addForm.invalid" type="submit" class="btn add" [class.btn-success]="addForm.valid">Add</button>
+  </form>
+
+
+  <ul class="list pt-0 col-12" *ngIf="(pairs$ | async) as pairs">
+    <li *ngFor="let pair of pairs" class="list-item m-3 rounded col-3">
+      <div class="action-box">
+        <span class="action" (click)="show(pair.id)">show</span>
+        <span class="action" (click)="edit(pair)">edit</span>
+        <span class="action" (click)="remove(pair.id)">&times;</span>
+      </div>
+      <p class="source">{{ pair.source }}</p>
+      <div class="data-box">
+        <span class="label">Login cred:</span>
+        <p class="cred mb-1">{{ pair.shown ? pair.login : replaceStars(pair.login)}}</p>
+        <span class="label">Password:</span>
+        <p class="cred">{{ pair.shown ? pair.password : replaceStars(pair.password) }}</p>
+      </div>
+    </li>
+  </ul>
+
+  <ng-container *ngIf="!(pairs$ | async)?.length">
+    <h2 class="text-center mt-3">No credentials added yet</h2>
+  </ng-container>
+</div>
