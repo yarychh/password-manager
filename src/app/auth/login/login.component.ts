@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser } from 'src/app/shared/services/state.service';
+import { IUser } from 'src/app/shared/constants/user.interface';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -36,5 +36,9 @@ export class LoginComponent implements OnInit {
 
   public login(): void {
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
+  }
+
+  public googleAuth(): void{
+    this.auth.GoogleAuth();
   }
 }

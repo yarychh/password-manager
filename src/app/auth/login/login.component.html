@@ -36,4 +36,8 @@
     <button [disabled]="loginForm.invalid" type="submit" class="btn login"
       [class.btn-info]="loginForm.valid">login</button>
   </form>
+
+  <hr>
+
+  <button class="btn" (click)="googleAuth()"><img src="assets\svg\icons8-google.svg" /> Continue with Google</button>
 </div>

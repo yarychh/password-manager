@@ -2,22 +2,38 @@
   <form [formGroup]="addForm" class="d-flex align-items-center p-2 flex-column flex-sm-row">
     <div class="inputs">
       <label for="source">Source</label>
-      <input type="text" name="source" formControlName="source" class="mb-2 p-1"
-        placeholder="enter sorce for credentials ex. github">
+        <app-input
+          formControlName="source"
+          name="source"
+          placeholder="enter sorce for credentials ex. github"
+          class="mb-2"
+        ></app-input>
       <label for="source">Email, username or other credential</label>
-      <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="enter credential">
+      <app-input
+        name="login"
+        formControlName="login"
+        class="mb-2"
+        placeholder="enter credential"
+      ></app-input>
       <label for="password">Password or passphrase</label>
-      <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="enter password">
+      <app-input
+        name="password"
+        formControlName="password"
+        class="mb-2"
+        placeholder="enter password"
+      ></app-input>
     </div>
 
     <button [disabled]="addForm.invalid" type="submit" class="btn add" [class.btn-success]="addForm.valid">Add</button>
   </form>
 
+  <mat-progress-bar *ngIf="fetching" mode="buffer"></mat-progress-bar>
+
 
   <ul class="list pt-0 col-12" *ngIf="(pairs$ | async) as pairs">
     <li *ngFor="let pair of pairs" class="list-item m-3 rounded col-3">
       <div class="action-box">
-        <span class="action" (click)="show(pair.id)">show</span>
+        <span class="action" (click)="pair.shown = !pair.shown">show</span>
         <span class="action" (click)="edit(pair)">edit</span>
         <span class="action" (click)="remove(pair.id)">&times;</span>
       </div>

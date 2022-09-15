@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditPairComponent } from './edit-pair/edit-pair.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 const routes: Routes = [
   {
@@ -22,6 +24,7 @@ const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatProgressBarModule
   ],
 })
 export class PasswordsModule {}

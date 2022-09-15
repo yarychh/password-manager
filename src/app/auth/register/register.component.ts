@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser, StateService } from 'src/app/shared/services/state.service';
+import { IUser } from 'src/app/shared/constants/user.interface';
 import { CustomValidators } from 'src/app/shared/validators/custom.validators';
 import { AuthService } from '../auth.service';
 
@@ -14,7 +14,6 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private state: StateService,
     private auth: AuthService
   ) {
     this.registerForm = this.fb.group(
@@ -56,7 +55,8 @@ export class RegisterComponent {
       id: Date.now(),
       pairs: [],
     };
-    this.state.addUser(newUser);
-    this.auth.login(email, password);
+
+    this.auth.register(newUser)
+      .catch(err => console.log('register failed', err))
   }
 }

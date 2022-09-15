@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "keychain-1a142": {
+      "hosting": {
+        "password-manager": [
+          "keychain-1a142"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "keychain-1a142"
+  }
+}

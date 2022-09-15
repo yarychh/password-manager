@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { IPassPair, StateService } from 'src/app/shared/services/state.service';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { IPassPair } from 'src/app/shared/constants/passPair.interface';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { EditPairComponent } from '../edit-pair/edit-pair.component';
 
 @Component({
@@ -13,11 +15,12 @@ import { EditPairComponent } from '../edit-pair/edit-pair.component';
 export class KeychainComponent implements OnInit {
   public addForm!: FormGroup;
   public pairs$!: Observable<IPassPair[]>;
+  public fetching = false;
 
   constructor(
-    private state: StateService,
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private firestoreService: FirestoreService
   ) {
     this.addForm = this.fb.group({
       source: [null, Validators.required],
@@ -25,37 +28,45 @@ export class KeychainComponent implements OnInit {
       password: [null, Validators.required],
     });
 
-    this.pairs$ = this.state.getPairs();
+    this.pairs$ = this.firestoreService.getPairs();
   }
 
   ngOnInit(): void {
-    this.state.getPairs().subscribe((pairs: IPassPair[]) => {
-      console.log('pairs', pairs);
-    });
   }
 
   public addPair(): void {
-    this.state.addPassPair({
+    this.fetching = true;
+    this.firestoreService.addPair({
       ...this.addForm.value,
       shown: false,
       id: Date.now(),
-    });
-    this.addForm.reset();
-  }
-
-  public show(id: number): void {
-    this.state.toggleShowPair(id);
+    }).then(() => {
+      this.addForm.reset();
+      this.pairs$ = this.firestoreService.getPairs();
+      this.fetching = false;
+    })
   }
 
   public edit(pair: IPassPair): void {
     this.dialog.open(EditPairComponent, {
       width: '500px',
       data: pair,
-    });
+    })
+      .afterClosed()
+      .subscribe(() => this.pairs$ = this.firestoreService.getPairs());
   }
 
   public remove(id: number): void {
-    this.state.removePair(id);
+    this.fetching = true;
+    this.dialog.open(ConfirmComponent, {
+      width: '500px',
+      data: id
+    })
+      .afterClosed()
+      .subscribe(() => {
+        this.pairs$ = this.firestoreService.getPairs();
+        this.fetching = false;
+      });
   }
 
   replaceStars(inp: string): string {
