@@ -17,8 +17,8 @@ export class AddPasswordComponent {
     private ref: MatDialogRef<AddPasswordComponent>
   ) {
     this.passwordForm = this.fb.group({
-      password: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]],
-      confirmPassword: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)]],
+      password: [null, [Validators.required, Validators.pattern( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)]],
+      confirmPassword: [null, [Validators.required, Validators.pattern( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)]],
     },
     {
       validators: CustomValidators.MatchValidator(
