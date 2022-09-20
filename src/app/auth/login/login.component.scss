@@ -11,7 +11,7 @@
 .card {
   margin: 0 auto;
   padding: 1.5rem;
-  max-width: 75%;
+  max-width: 50%;
   transform: translateY(-30px) !important;
   grid-row: 2/2;
   // background-color: $main-bg;
@@ -24,4 +24,11 @@
 
 .title {
   font-weight: 400;
+}
+
+.error{
+  width: 100%;
+  color: $main-accent;
+  margin-bottom: 0;
+  max-width: 80%;
 }

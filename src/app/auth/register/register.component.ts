@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser } from 'src/app/shared/constants/user.interface';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { CustomValidators } from 'src/app/shared/validators/custom.validators';
 import { AuthService } from '../auth.service';
 

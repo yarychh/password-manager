@@ -2,7 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IPassPair } from 'src/app/shared/constants/passPair.interface';
+import { IPassPair } from 'src/app/shared/interfaces/passPair.interface';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({

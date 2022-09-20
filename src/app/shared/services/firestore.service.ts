@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Store } from '@ngxs/store';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, catchError, first, Observable, of } from 'rxjs';
-import { IPassPair } from '../constants/passPair.interface';
-import { IUser } from '../constants/user.interface';
+import { IPassPair } from '../interfaces/passPair.interface';
+import { IUser } from '../interfaces/user.interface';
+import { SetPairsAction } from '../state/keychain.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +16,8 @@ export class FirestoreService {
 
   constructor(
     private _firestore: AngularFirestore,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _store: Store
   ) {
     this.currentEmail = this.getEmail();
   }
@@ -29,7 +32,7 @@ export class FirestoreService {
     }
   }
 
-  public getPairs(): Observable<IPassPair[]> {
+  public getPairs(): void {
     this._firestore
       .collection('users')
       .doc(this.currentEmail)
@@ -44,9 +47,8 @@ export class FirestoreService {
       .subscribe((user) => {
         const pairs = (user as IUser)?.pairs ?? [];
         this.pairs$.next(pairs);
+        this._store.dispatch(new SetPairsAction(pairs));
       });
-
-    return this.pairs$;
   }
 
   public addPair(pair: IPassPair): Promise<void> {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -16,14 +16,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class InputComponent implements ControlValueAccessor {
   @Input() public value!: string;
   @Input() public placeholder!: string;
+  @Input() public type: string = 'text';
+  @Input() public autocomplete: string = 'off';
 
   constructor() {}
 
   public onChange(value: string): void {}
   public onTouched = () => {};
 
-  writeValue(value: string): void {
-    this.value = value;
+  writeValue(value: string | null): void {
+    if (value === null) {
+      this.value = '';
+    } else {
+      this.value = value;
+    }
   }
 
   registerOnChange(fn: any): void {

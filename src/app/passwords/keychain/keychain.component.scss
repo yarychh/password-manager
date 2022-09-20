@@ -37,27 +37,48 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .list-item {
   padding: 0.75rem;
   background-color: $main-bg !important;
-  width: 300px;
+  min-width: 300px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: .2rem .2rem .7rem rgba(black, .3);
+  transition: all .3s;
+
   &:hover {
     background-color: $main-bg !important;
+    box-shadow: .2rem .4rem 1rem rgba($main-accent, .3);
   }
 }
 
 .action-box {
-  position: absolute;
-  top: 10px;
-  right: 2px;
+  align-self: flex-end;
   display: flex;
+  align-items: center;
 }
 
 .action {
   color: $main-accent;
   margin-right: 0.5rem;
   cursor: pointer;
+}
+
+.data-box{
+  width: 100%;
+}
+
+.source{
+  width: 100%;
+  margin-bottom: .5rem;
+}
+
+.icon{
+  filter: invert(18%) sepia(91%) saturate(4317%) hue-rotate(344deg) brightness(95%) contrast(94%);;
 }

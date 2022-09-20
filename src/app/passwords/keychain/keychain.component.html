@@ -1,30 +1,30 @@
 <div class="card" (submit)="addPair()">
   <form [formGroup]="addForm" class="d-flex align-items-center p-2 flex-column flex-sm-row">
     <div class="inputs">
-      <label for="source">Source</label>
+      <label for="source">{{ 'source' | translate }}</label>
         <app-input
           formControlName="source"
           name="source"
-          placeholder="enter sorce for credentials ex. github"
+          placeholder="{{ 'sourcePlaceholder' | translate }}"
           class="mb-2"
         ></app-input>
-      <label for="source">Email, username or other credential</label>
+      <label for="source">{{ 'loginCredField' | translate }}</label>
       <app-input
         name="login"
         formControlName="login"
         class="mb-2"
-        placeholder="enter credential"
+        placeholder="{{ 'loginCredPlaceholder' | translate }}"
       ></app-input>
-      <label for="password">Password or passphrase</label>
+      <label for="password">{{ 'passwordCredField' | translate }}</label>
       <app-input
         name="password"
         formControlName="password"
         class="mb-2"
-        placeholder="enter password"
+        placeholder="{{ 'passwordCredPlaceholder' | translate }}"
       ></app-input>
     </div>
 
-    <button [disabled]="addForm.invalid" type="submit" class="btn add" [class.btn-success]="addForm.valid">Add</button>
+    <button [disabled]="addForm.invalid" type="submit" class="btn add" [class.btn-success]="addForm.valid">{{ 'add' | translate }}</button>
   </form>
 
   <mat-progress-bar *ngIf="fetching" mode="buffer"></mat-progress-bar>
@@ -33,21 +33,27 @@
   <ul class="list pt-0 col-12" *ngIf="(pairs$ | async) as pairs">
     <li *ngFor="let pair of pairs" class="list-item m-3 rounded col-3">
       <div class="action-box">
-        <span class="action" (click)="pair.shown = !pair.shown">show</span>
-        <span class="action" (click)="edit(pair)">edit</span>
-        <span class="action" (click)="remove(pair.id)">&times;</span>
+        <span class="action" (click)="toggleShown(pair.id)">
+          <img class="icon" [src]="pair.shown ? 'assets/img/icons8-closed-eye-32.png' : 'assets/img/icons8-eye-32.png'" alt="show/hide">
+        </span>
+        <span class="action" (click)="edit(pair)">
+          <img class="icon" src="assets/img/icons8-edit-32.png" alt="edit">
+        </span>
+        <span class="action" (click)="remove(pair.id)">
+          <img class="icon" src="assets/img/icons8-close-32.png" alt="close">
+        </span>
       </div>
       <p class="source">{{ pair.source }}</p>
       <div class="data-box">
-        <span class="label">Login cred:</span>
-        <p class="cred mb-1">{{ pair.shown ? pair.login : replaceStars(pair.login)}}</p>
-        <span class="label">Password:</span>
-        <p class="cred">{{ pair.shown ? pair.password : replaceStars(pair.password) }}</p>
+        <span class="label">{{ 'loginCred' | translate }}</span>
+        <p class="cred mb-1">{{ pair.login | star: pair.shown }}</p>
+        <span class="label">{{ 'passwordCred' | translate }}</span>
+        <p class="cred">{{ pair.password | star: pair.shown }}</p>
       </div>
     </li>
   </ul>
 
   <ng-container *ngIf="!(pairs$ | async)?.length">
-    <h2 class="text-center mt-3">No credentials added yet</h2>
+    <h2 class="text-center mt-3">{{ 'noCreds' | translate }}</h2>
   </ng-container>
 </div>

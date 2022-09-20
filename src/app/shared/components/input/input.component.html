@@ -1,7 +1,10 @@
 <input
-    type="text"
+    #input
+    [type]="type"
+    [autocomplete]="autocomplete"
     class="input p-1"
     [placeholder]="placeholder"
-    [value]="value"
+    [(ngModel)]="value"
     (input)="onInputValueChange($event)"
+    appRestrictChars
 />

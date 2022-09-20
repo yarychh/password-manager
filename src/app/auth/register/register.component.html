@@ -1,75 +1,116 @@
 <div class="card py-3 rounded col-8">
-  <h1 class="text-center title pb-1">Register</h1>
-  <p class="text-center pb-3">Please fill the form below to create account</p>
+  <h1 class="text-center pb-1">{{ 'register' | translate }}</h1>
+  <p class="text-center">{{ 'pleaseRegister' | translate }}</p>
 
   <form [formGroup]="registerForm" (submit)="register()"
     class="d-flex flex-column justify-content-center align-items-center">
 
-    <mat-form-field class="col-10 pb-1" appearance="fill">
-      <mat-label>First Name</mat-label>
-      <input type="text" matInput formControlName="firstName" placeholder="Your First Name" autocomplete="given-name">
-      <mat-error
-        *ngIf="registerForm?.get('firstName')?.hasError('minlength') && !registerForm?.get('firstName')?.hasError('required')">
-        Provided name is {{registerForm.get('firstName')?.value.length}} chars long, while minimun is 3.
-      </mat-error>
-      <mat-error *ngIf="registerForm?.get('firstName')?.hasError('required')">
-        First name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="col-10 pb-3">
+      <label for="firstName">{{ "firstName" | translate }}</label>
+      <app-input
+        name="fistName"
+        type="text"
+        formControlName="firstName"
+        placeholder="{{ 'firstNamePlaceholder' | translate }}"
+        autocomplete="given-name"
+      ></app-input>
+      <p *ngIf="registerForm?.get('firstName')?.hasError('minlength') && !registerForm?.get('firstName')?.hasError('required') && registerForm?.get('firstName')?.dirty"
+        class="error"
+      >
+        {{ 'tooShort' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('firstName')?.hasError('required') && registerForm?.get('firstName')?.dirty"
+        class="error"
+      >
+        {{ 'firstNameRequired' | translate }}
+      </p>
+    </div>
 
-    <mat-form-field class="col-10 pb-1" appearance="fill">
-      <mat-label>Last Name</mat-label>
-      <input type="text" matInput formControlName="lastName" placeholder="Your Last Name" autocomplete="given-name">
-      <mat-error
-        *ngIf="registerForm?.get('lastName')?.hasError('minlength') && !registerForm?.get('lastName')?.hasError('required')">
-        Provided name is {{registerForm.get('lastName')?.value.length}} chars long, while minimun is 3.
-      </mat-error>
-      <mat-error *ngIf="registerForm?.get('lastName')?.hasError('required')">
-        Last name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="col-10 pb-3">
+      <label for="lastName">{{ 'lastName' | translate }}</label>
+      <app-input
+        type="text"
+        name="lastName"
+        formControlName="lastName"
+        placeholder="{{ 'lastNamePlaceholder' | translate }}"
+        autocomplete="given-name"
+      ></app-input>
+      <p *ngIf="registerForm?.get('lastName')?.hasError('minlength') && !registerForm?.get('lastName')?.hasError('required') && registerForm?.get('lastName')?.dirty"
+        class="error"
+      >
+        {{ 'tooShort' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('lastName')?.hasError('required') && registerForm?.get('lastName')?.dirty"
+        class="error"
+      >
+        {{ 'lastNameRequired' | translate }}
+      </p>
+    </div>
 
-    <mat-form-field class="col-10 pb-1" appearance="fill">
-      <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName="email" placeholder="Enter Email" autocomplete="email">
-      <mat-error
-        *ngIf="registerForm?.get('email')?.hasError('email') && !registerForm?.get('email')?.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="registerForm?.get('email')?.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="col-10 pb-3">
+      <label for='email'>{{ 'email' | translate }}</label>
+      <app-input
+        name="email"
+        type="email"
+        formControlName="email"
+        placeholder="{{ 'enterEmail' | translate }}"
+        autocomplete="email"
+      ></app-input>
+      <p *ngIf="registerForm?.get('email')?.hasError('email') && !registerForm?.get('email')?.hasError('required') && registerForm?.get('email')?.dirty"
+        class="error"
+      >
+        {{ 'entarValidEmail' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('email')?.hasError('required') && registerForm?.get('email')?.dirty"
+        class="error"
+      >
+        {{ 'emailRequired' | translate }}
+      </p>
+    </div>
 
-    <mat-form-field class="col-10 pb-1" appearance="fill"
+    <div class="col-10 pb-3"
       [class.mb-2]="registerForm.get('password')?.hasError('pattern') && !registerForm.get('password')?.hasError('required')">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput formControlName="password" placeholder="Enter Password"
-        autocomplete="new-password">
-      <mat-error
-        *ngIf="registerForm?.get('password')?.hasError('pattern') && !registerForm?.get('password')?.hasError('required')">
-        Password should have at least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1
-        number.
-      </mat-error>
-      <mat-error *ngIf="registerForm?.get('password')?.hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+      <label for="password">{{ 'password' | translate }}</label>
+      <app-input
+        name="password"
+        type="password"
+        formControlName="password"
+        placeholder="{{ 'enterPassword' | translate }}"
+        autocomplete="new-password"
+      ></app-input>
+      <p *ngIf="registerForm?.get('password')?.hasError('pattern') && !registerForm?.get('password')?.hasError('required') && registerForm?.get('password')?.dirty"
+        class="error"
+      >
+        {{ 'passwordPattern' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('password')?.hasError('required') && registerForm?.get('password')?.dirty"
+        class="error"
+      >
+        {{ 'passwordRequired' | translate }}
+      </p>
+    </div>
 
-    <mat-form-field class="col-10 pb-1" appearance="fill">
-      <mat-label>Confirm Password</mat-label>
-      <input type="password" matInput formControlName="confirmPassword" placeholder="Confirm Password"
-        autocomplete="new-password">
-      <mat-error *ngIf="registerForm?.get('confirmPassword')?.hasError('required')">
-        Confirm password is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <div class="col-10 pb-3">
+      <label for="confirmPassword">{{ 'confirmPassword' | translate }}</label>
+      <app-input
+        name="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+        placeholder="{{ 'confirmPassword' | translate }}"
+        autocomplete="new-password"
+      ></app-input>
+      <p *ngIf="registerForm?.get('confirmPassword')?.hasError('required') && registerForm?.get('confirmPassword')?.dirty"
+        class="error"
+      >
+        {{ 'confirmPasswordRequred' | translate }}
+      </p>
+    </div>
 
     <p *ngIf="passwordMatchError" class="passError">
-      Passwords should match.
+      {{ 'passwordMatch' | translate }}
     </p>
 
     <button [disabled]="registerForm.invalid" type="submit" class="btn register"
-      [class.btn-info]="registerForm.valid">register</button>
+      [class.btn-info]="registerForm.valid">{{ 'registerBtn' | translate }}</button>
   </form>
 </div>

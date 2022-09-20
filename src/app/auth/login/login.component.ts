@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser } from 'src/app/shared/constants/user.interface';
+import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { AuthService } from '../auth.service';
 
 @Component({

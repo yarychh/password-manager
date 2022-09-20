@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddPasswordComponent } from './add-password/add-password.component';
 
 const routes: Routes = [
   {
@@ -25,11 +27,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, AddPasswordComponent],
   imports: [
     CommonModule,
     RouterModule,
     RouterModule.forChild(routes),
+    HttpClientModule,
     SharedModule,
     MatInputModule,
     MatFormFieldModule,

@@ -1,11 +1,16 @@
 <header class="header">
   <div class="logobox cursor-pointer" (click)="home()">
-    <h1 class="mb-0 title">KeyChain</h1>
+    <h1 class="mb-0 title">{{ 'logo' | translate }}</h1>
+  </div>
+
+  <div class="lang" (click)="changeLang()">
+    <img *ngIf="currentLang === 'ua'" src="assets/svg/ukraine.svg" alt="ukraine" class="icon">
+    <img *ngIf="currentLang === 'en'" src="assets/svg/english.svg" alt="english" class="icon">
   </div>
 
   <ul class="list-group" *ngIf="auth.isLoggedIn$ | async">
     <li class="list-group-item px-4">
-      <a class="link text-decoration-none" (click)="auth.logout()">logout</a>
+      <a class="link text-decoration-none" (click)="auth.logout()">{{ 'logout' | translate }}</a>
     </li>
   </ul>
 </header>

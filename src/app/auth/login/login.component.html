@@ -1,43 +1,46 @@
 <div class="card">
-  <h1 class="text-center title pb-1">Welcome to KeyChain!</h1>
-  <p class="text-center pb-3">Please login to continue</p>
+  <h1 class="text-center title pb-1">{{ 'welcome' | translate }}</h1>
+  <p class="text-center pb-3 mb-0">{{ 'pleaseLogin' | translate }}</p>
 
   <form [formGroup]="loginForm" (submit)="login()" class="d-flex flex-column justify-content-center align-items-center">
 
-    <mat-form-field class="col-10" appearance="fill">
-      <mat-label>Email</mat-label>
-      <input type="email" matInput formControlName="email" placeholder="Enter Email" autocomplete="email">
-      <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')">
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <app-input
+    class="col-10"
+    [class.mb-3]="loginForm.get('email')?.valid || !loginForm.get('email')?.dirty"
+    formControlName="email"
+    type="email"
+    autocomplete="email"
+    placeholder="{{ 'enterEmail' | translate}}"
+    ></app-input>
+    <p *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')" class="error">
+      {{ 'entarValidEmail' | translate }}
+    </p>
+    <p *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.hasError('required')" class="error">
+      {{ 'emailRequired' | translate }}
+    </p>
 
-    <mat-form-field class="col-10"
-      [class.pb-3]="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')"
-      appearance="fill">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput formControlName="password" placeholder="Enter Password"
-        autocomplete="current-password">
-      <mat-error
-        *ngIf="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')">
-        Password should have at least 8 characters, must contain at least 1 uppercase letter, 1 lowercase letter, and 1
-        number.
-      </mat-error>
-      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+    <app-input
+    class="col-10"
+    [class.mb-3]="loginForm.get('password')?.valid || !loginForm.get('password')?.dirty"
+    formControlName="password"
+    placeholder="{{ 'enterPassword' | translate }}"
+    type="password"
+    autocomplete="current-password"
+    ></app-input>
+    <p *ngIf="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')" class="error">
+      {{ 'passwordPattern' | translate }}
+    </p>
+    <p *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.hasError('required')" class="error">
+      {{ 'passwordRequired' | translate }}
+    </p>
 
-    <a routerLink="/auth/register" class="link text-center text-decoration-none text-muted pb-3">Don't have account?</a>
+    <a routerLink="/auth/register" class="link text-center text-decoration-none text-muted pb-3">{{ 'dontHaveAccount' | translate }}</a>
 
     <button [disabled]="loginForm.invalid" type="submit" class="btn login"
-      [class.btn-info]="loginForm.valid">login</button>
+      [class.btn-info]="loginForm.valid">{{ 'login' | translate }}</button>
   </form>
 
   <hr>
 
-  <button class="btn" (click)="googleAuth()"><img src="assets\svg\icons8-google.svg" /> Continue with Google</button>
+  <button class="btn" (click)="googleAuth()"><img src="assets\svg\icons8-google.svg" />{{ 'continueGoogle' | translate }}</button>
 </div>

@@ -1,11 +1,11 @@
 <form [formGroup]="editForm" (submit)="save()" class="d-flex align-items-center flex-column p-2">
   <div class="inputs mb-2">
-    <label for="source">Email, username or other credential</label>
-    <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="enter credential">
-    <label for="password">Password or passphrase</label>
-    <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="enter password">
+    <label for="source">{{ 'loginCredField' | translate }}</label>
+    <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="{{ 'loginCredPlaceholder' | translate }}">
+    <label for="password">{{ 'passwordCredField' | translate }}</label>
+    <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="{{ 'passwordCredPlaceholder' | translate }}">
   </div>
 
   <button [disabled]="editForm.invalid" type="submit" class="btn edit"
-    [class.btn-success]="editForm.valid">Save</button>
+    [class.btn-success]="editForm.valid">{{ 'save' | translate }}</button>
 </form>
