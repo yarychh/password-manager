@@ -11,7 +11,7 @@
 .card {
   margin: 0 auto;
   padding: 1.5rem;
-  max-width: 50%;
+  width: 50%;
   transform: translateY(-30px) !important;
   grid-row: 2/2;
 
@@ -21,6 +21,10 @@
 
   @media (max-width: 500px) {
     max-width: 90%;
+  }
+
+  form{
+    width: 100%;
   }
   // background-color: $main-bg;
 }

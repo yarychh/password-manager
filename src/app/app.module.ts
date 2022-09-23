@@ -32,7 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
