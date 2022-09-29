@@ -64,15 +64,20 @@ export class FirestoreService {
   }
 
   public removePair(id: number): Promise<void> {
-    if (!this.currentEmail.length) {
-      this.toastr.error('Pair removal failed!');
-    }
-    return this._firestore
-      .collection('users')
-      .doc(this.currentEmail)
-      .update({
-        pairs: this.pairs$.getValue().filter((pair) => pair.id !== id),
-      });
+    // mock
+    return new Promise((res, rej) => {
+      res()
+    });
+
+    // if (!this.currentEmail.length) {
+    //   this.toastr.error('Pair removal failed!');
+    // }
+    // return this._firestore
+    //   .collection('users')
+    //   .doc(this.currentEmail)
+    //   .update({
+    //     pairs: this.pairs$.getValue().filter((pair) => pair.id !== id),
+    //   });
   }
 
   public updatePair(
@@ -80,21 +85,27 @@ export class FirestoreService {
     password: string,
     id: number
   ): Promise<void> {
-    if (!this.currentEmail.length) {
-      this.toastr.error('Update failed!');
-    }
-    return this._firestore
-      .collection('users')
-      .doc(this.currentEmail)
-      .update({
-        pairs: [
-          ...this.pairs$.getValue().filter((pair) => pair.id !== id),
-          {
-            ...this.pairs$.getValue().find((pair) => pair.id === id),
-            login,
-            password,
-          },
-        ],
-      });
+    // mock
+    return new Promise((res, rej) => {
+      res()
+    });
+
+
+    // if (!this.currentEmail.length) {
+    //   this.toastr.error('Update failed!');
+    // }
+    // return this._firestore
+    //   .collection('users')
+    //   .doc(this.currentEmail)
+    //   .update({
+    //     pairs: [
+    //       ...this.pairs$.getValue().filter((pair) => pair.id !== id),
+    //       {
+    //         ...this.pairs$.getValue().find((pair) => pair.id === id),
+    //         login,
+    //         password,
+    //       },
+    //     ],
+    //   });
   }
 }

@@ -7,5 +7,7 @@ export class SetPairsAction {
 
 export class ToggleShownAction {
   static readonly type = '[Keychain] Toggle Shown';
-  constructor(public id: number) { }
+  constructor(public id: string) { }
+  // with firebase
+  // constructor(public id: number) { }
 }

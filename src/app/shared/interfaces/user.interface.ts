@@ -1,10 +1,26 @@
-import { IPassPair } from "./passPair.interface";
+import { IPassPair } from './passPair.interface';
 
 export interface IUser {
-  id: number;
+  id: number | string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  pairs: IPassPair[];
+  pairs?: IPassPair[];
+}
+
+export interface IRegisterUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+export interface IRegisteredUserResponse {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  __v: number;
+  _id: string;
 }

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import {TranslateService} from '@ngx-translate/core';
+import { Auth2Service } from 'src/app/auth/auth2.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  constructor(public auth: AuthService, private router: Router, private translate: TranslateService) { }
+  constructor(public auth2: Auth2Service, private router: Router, private translate: TranslateService) { }
   public currentLang = '';
 
   ngOnInit(): void {

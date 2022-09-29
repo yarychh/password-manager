@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { CustomValidators } from 'src/app/shared/validators/custom.validators';
 import { AuthService } from '../auth.service';
+import { Auth2Service } from '../auth2.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private auth2: Auth2Service
   ) {
     this.registerForm = this.fb.group(
       {
@@ -47,16 +49,21 @@ export class RegisterComponent {
 
   register(): void {
     const { firstName, lastName, email, password } = this.registerForm.value;
-    const newUser: IUser = {
-      email,
-      firstName,
-      lastName,
-      password,
-      id: Date.now(),
-      pairs: [],
-    };
+    this.auth2.register({ firstName, lastName, email, password });
 
-    this.auth.register(newUser)
-      .catch(err => console.log('register failed', err))
+    // with firebase
+
+    // const newUser: IUser = {
+    //   email,
+    //   firstName,
+    //   lastName,
+    //   password,
+    //   id: Date.now(),
+    //   pairs: [],
+    // };
+
+    // this.auth.register(newUser)
+    //   .catch(err => console.log('register failed', err))
+
   }
 }

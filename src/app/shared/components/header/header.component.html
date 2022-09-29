@@ -8,9 +8,9 @@
     <img *ngIf="currentLang === 'en'" src="assets/svg/english.svg" alt="english" class="icon">
   </div>
 
-  <ul class="list-group" *ngIf="auth.isLoggedIn$ | async">
+  <ul class="list-group" *ngIf="auth2.isLoggedIn$ | async">
     <li class="list-group-item px-4">
-      <a class="link text-decoration-none" (click)="auth.logout()">{{ 'logout' | translate }}</a>
+      <a class="link text-decoration-none" (click)="auth2.logout()">{{ 'logout' | translate }}</a>
     </li>
   </ul>
 </header>
