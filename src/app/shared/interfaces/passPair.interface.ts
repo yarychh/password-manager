@@ -4,6 +4,7 @@ export interface IPassPair {
   source: string;
   shown: boolean;
   id: string;
+  category: string;
   // with firebase
   // id: number;
   userId: string;
@@ -15,5 +16,6 @@ export interface IPassPairResponce {
   login: string;
   password: string;
   source: string;
+  category: string;
   shown: boolean;
 }

@@ -7,7 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditPairComponent } from './edit-pair/edit-pair.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { PairComponent } from './pair/pair.component';
 
 const routes: Routes = [
   {
@@ -17,14 +18,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [KeychainComponent, EditPairComponent],
+  declarations: [KeychainComponent, EditPairComponent, PairComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTabsModule
   ],
 })
 export class PasswordsModule {}

@@ -64,7 +64,7 @@ export class ApiService {
       )
       .subscribe((resp) => {
         const pairs = (resp as []).map((pair) => {
-          const { _id, login, password, shown, source, userId } =
+          const { _id, login, password, shown, source, userId, category } =
             pair as IPassPairResponce;
           return {
             id: _id,
@@ -73,6 +73,7 @@ export class ApiService {
             shown,
             source,
             userId,
+            category
           } as IPassPair;
         });
         this._store.dispatch(new SetPairsAction(pairs));
@@ -125,6 +126,7 @@ export class ApiService {
         password: pair.password,
         source: pair.source,
         shown: pair.shown,
+        category: pair.category
       })
       .pipe(
         catchError((err) => {

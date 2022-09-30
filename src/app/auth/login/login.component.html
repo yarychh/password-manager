@@ -26,6 +26,7 @@
     placeholder="{{ 'enterPassword' | translate }}"
     type="password"
     autocomplete="current-password"
+    appRestrictChars
     ></app-input>
     <p *ngIf="loginForm.get('password')?.hasError('pattern') && !loginForm.get('password')?.hasError('required')" class="error">
       {{ 'passwordPattern' | translate }}

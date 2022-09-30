@@ -24,6 +24,7 @@ export class EditPairComponent implements OnInit {
     this.editForm = this.fb.group({
       login: [null, Validators.required],
       password: [null, Validators.required],
+      category: [null, Validators.required],
     });
   }
 
@@ -31,6 +32,7 @@ export class EditPairComponent implements OnInit {
     this.editForm.patchValue({
       login: this.data.login,
       password: this.data.password,
+      category: this.data.category,
     });
   }
 
@@ -42,10 +44,11 @@ export class EditPairComponent implements OnInit {
       shown: false,
       source: this.data.source,
       userId: this.data.userId,
+      category: this.editForm.value.category
     };
     this.api.editPair(editedPair);
     this.ref.close();
-    
+
     // with firebase
     // this.firestoreService.updatePair(
     //   this.editForm.value.login,

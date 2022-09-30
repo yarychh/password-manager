@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { KeychainSelectors } from 'src/app/shared/state/keychain.selectors';
@@ -20,7 +20,9 @@ import { ApiService } from 'src/app/shared/services/api.service';
 export class KeychainComponent implements OnInit {
   public addForm!: FormGroup;
   public fetching = false;
+  public sortedPairs: any[] = [];
   @Select(KeychainSelectors.pairs) pairs$!: Observable<IPassPair[]>;
+  @Select(KeychainSelectors.sortedPairs) sortedPairs$!: Observable<Array<IPassPair[]>>;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +35,7 @@ export class KeychainComponent implements OnInit {
       source: [null, Validators.required],
       login: [null, Validators.required],
       password: [null, Validators.required],
+      category: ['General', Validators.required],
     });
   }
 

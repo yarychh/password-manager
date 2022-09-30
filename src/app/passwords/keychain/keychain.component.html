@@ -2,12 +2,12 @@
   <form [formGroup]="addForm" class="d-flex align-items-center p-2 flex-column flex-sm-row">
     <div class="inputs">
       <label for="source">{{ 'source' | translate }}</label>
-        <app-input
-          formControlName="source"
-          name="source"
-          placeholder="{{ 'sourcePlaceholder' | translate }}"
-          class="mb-2"
-        ></app-input>
+      <app-input
+        formControlName="source"
+        name="source"
+        placeholder="{{ 'sourcePlaceholder' | translate }}"
+        class="mb-2"
+      ></app-input>
       <label for="source">{{ 'loginCredField' | translate }}</label>
       <app-input
         name="login"
@@ -22,36 +22,56 @@
         class="mb-2"
         placeholder="{{ 'passwordCredPlaceholder' | translate }}"
       ></app-input>
+      <label for="category">{{ 'categoryCredField' | translate }}</label>
+      <app-input
+        name="category"
+        formControlName="category"
+        class="mb-2"
+        placeholder="{{ 'categoryCredPlaceholder' | translate }}"
+      ></app-input>
     </div>
 
-    <button [disabled]="addForm.invalid" type="submit" class="btn add" [class.btn-success]="addForm.valid">{{ 'add' | translate }}</button>
+    <button
+      [disabled]="addForm.invalid"
+      type="submit"
+      class="btn add"
+      [class.btn-success]="addForm.valid"
+    >
+      {{ 'add' | translate }}
+    </button>
   </form>
 
   <mat-progress-bar *ngIf="fetching" mode="buffer"></mat-progress-bar>
 
+  <mat-tab-group mat-align-tabs="start">
 
-  <ul class="list pt-0 col-12" *ngIf="(pairs$ | async) as pairs">
-    <li *ngFor="let pair of pairs" class="list-item m-3 rounded col-3">
-      <div class="action-box">
-        <span class="action" (click)="toggleShown(pair.id)">
-          <img class="icon" [src]="pair.shown ? 'assets/img/icons8-closed-eye-32.png' : 'assets/img/icons8-eye-32.png'" alt="show/hide">
-        </span>
-        <span class="action" (click)="edit(pair)">
-          <img class="icon" src="assets/img/icons8-edit-32.png" alt="edit">
-        </span>
-        <span class="action" (click)="remove(pair.id)">
-          <img class="icon" src="assets/img/icons8-close-32.png" alt="close">
-        </span>
-      </div>
-      <p class="source">{{ pair.source }}</p>
-      <div class="data-box">
-        <span class="label">{{ 'loginCred' | translate }}</span>
-        <p class="cred mb-1">{{ pair.login | star: pair.shown }}</p>
-        <span class="label">{{ 'passwordCred' | translate }}</span>
-        <p class="cred">{{ pair.password | star: pair.shown }}</p>
-      </div>
-    </li>
-  </ul>
+    <mat-tab label="All">
+      <ul class="list pt-0 col-12" *ngIf="(pairs$ | async) as pairs">
+        <app-pair
+          *ngFor="let pair of pairs"
+          [pair]="pair"
+          (deletePair)="remove($event)" (editPair)="edit($event)"
+          (toggleShowPair)="toggleShown($event)"
+        ></app-pair>
+      </ul>
+    </mat-tab>
+
+    <ng-container *ngIf="sortedPairs$ | async as categories">
+      <mat-tab *ngFor="let category of categories" [label]="category[0].category">
+        <ul class="list pt-0 col-12">
+          <app-pair
+            *ngFor="let pair of category"
+            [pair]="pair"
+            (deletePair)="remove($event)"
+            (editPair)="edit($event)"
+            (toggleShowPair)="toggleShown($event)"
+          ></app-pair>
+        </ul>
+      </mat-tab>
+    </ng-container>
+    
+  </mat-tab-group>
+
 
   <ng-container *ngIf="!(pairs$ | async)?.length">
     <h2 class="text-center mt-3">{{ 'noCreds' | translate }}</h2>

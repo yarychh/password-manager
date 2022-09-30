@@ -4,6 +4,8 @@
     <input type="text" name="login" formControlName="login" class="mb-2 p-1" placeholder="{{ 'loginCredPlaceholder' | translate }}">
     <label for="password">{{ 'passwordCredField' | translate }}</label>
     <input type="text" name="password" formControlName="password" class="mb-2 p-1" placeholder="{{ 'passwordCredPlaceholder' | translate }}">
+    <label for="category">{{ 'categoryCredField' | translate }}</label>
+    <input type="text" name="category" formControlName="category" class="mb-2 p-1" placeholder="{{ 'categoryCredPlaceholder' | translate }}">
   </div>
 
   <button [disabled]="editForm.invalid" type="submit" class="btn edit"

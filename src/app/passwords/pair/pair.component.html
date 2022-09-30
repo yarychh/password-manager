@@ -1,0 +1,21 @@
+<li class="list-item m-3 rounded col-3">
+  <div class="action-box mb-2">
+    <span class="category">{{ pair.category }}</span>
+    <span class="action" (click)="toggleShown(pair.id)">
+      <img class="icon" [src]="pair.shown ? 'assets/img/icons8-closed-eye-32.png' : 'assets/img/icons8-eye-32.png'" alt="show/hide">
+    </span>
+    <span class="action" (click)="edit(pair)">
+      <img class="icon" src="assets/img/icons8-edit-32.png" alt="edit">
+    </span>
+    <span class="action" (click)="remove(pair.id)">
+      <img class="icon" src="assets/img/icons8-close-32.png" alt="close">
+    </span>
+  </div>
+  <p class="source">{{ pair.source }}</p>
+  <div class="data-box">
+    <span class="label">{{ 'loginCred' | translate }}</span>
+    <p class="cred mb-1">{{ pair.login | star: pair.shown }}</p>
+    <span class="label">{{ 'passwordCred' | translate }}</span>
+    <p class="cred">{{ pair.password | star: pair.shown }}</p>
+  </div>
+</li>

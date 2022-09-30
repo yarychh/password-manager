@@ -1,0 +1,74 @@
+@import "/src/styles.scss";
+
+.source {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: $main-accent;
+  margin-bottom: 1.5rem;
+}
+
+.cred {
+  font-weight: 400;
+  font-size: 1rem;
+  color: $main-accent;
+  border: 1px solid $main-accent;
+  padding: 0.3rem;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  color: $main-accent;
+}
+
+.list-item {
+  padding: 0.75rem;
+  background-color: $main-bg !important;
+  min-width: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: .2rem .2rem .7rem rgba(black, .3);
+  transition: all .3s;
+
+  &:hover {
+    background-color: $main-bg !important;
+    box-shadow: .2rem .4rem 1rem rgba($main-accent, .3);
+  }
+}
+
+.action-box {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.action {
+  color: $main-accent;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.category{
+  color: $main-accent;
+  margin-right: auto;
+  border: 1px solid $main-accent;
+  padding: .07rem .25rem;
+  border-radius: 15px;
+}
+
+.data-box{
+  width: 100%;
+}
+
+.source{
+  width: 100%;
+  margin-bottom: .5rem;
+  font-weight: 500;
+}
+
+.icon{
+  filter: invert(18%) sepia(91%) saturate(4317%) hue-rotate(344deg) brightness(95%) contrast(94%);;
+}
